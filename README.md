@@ -43,6 +43,37 @@ docker system prune
 Note: to distory all containers
 ```
 ```console
-docker system prune
-Note: to stop a container
+docker stop <container id>
+Note: stop command send terminate signal to the process and the process stops on its time
+docker kill <container id>
+Note: send kill signal and shutdown immediately no additional work.
 ```
+## 4. Container
+### 4.1 Execute an additional command in a container
+```console
+docker exec -it <container id> <command>
+Example: docker exec -it <container id> redis-cli
+Note: create a redis server container and run the above command
+exec (run another command) -it (input)
+```
+### 4.2 start shell script
+```console
+exec -it <container id> <command>
+Example: docker exec -it <container id> sh
+Example: docker run -it busybox sh
+Note: Comman processors: sh, bash, powershell,zsh
+```
+## 5. Buiding a custom images
+### 5.1 Create an image that run redis-server
+```console
+- create DockerFile
+# Use an existing docker image as a base
+FROM alpine
+# Download and install a dependency
+RUN apk add  --update redis
+# Tell the image what to do when it starts as a container
+CMD ["redis-server"]
+# go to shell> docker build .
+```
+
+
