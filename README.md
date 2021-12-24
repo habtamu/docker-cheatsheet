@@ -76,4 +76,11 @@ CMD ["redis-server"]
 # go to shell> docker build .
 ```
 
+** build command** used an docker file and generate out of it.
+** . ** is a buld context (set of files and folders that belong to projects/encousulate in the container or used to build)
+### 5.1 Tagging an image 
+```console
+docker build -t habka/redis:latest .
+Note: your docker ID /. Repositor or project name : version
+```
 
