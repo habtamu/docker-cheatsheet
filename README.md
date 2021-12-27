@@ -83,4 +83,8 @@ CMD ["redis-server"]
 docker build -t habka/redis:latest .
 Note: your docker ID /. Repositor or project name : version
 ```
-
+Note:
+ - if the file name is Dockerfile.dev 
+``` console
+docker build -f Dockerfile.dev .
+```
