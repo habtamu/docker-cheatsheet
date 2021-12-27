@@ -99,3 +99,37 @@ docker run -it -p 3000:3000 -v /app/node_modules -v $(pwd):/app  d65829b5b674c98
 Note:
   - -v /app/node_module Put a bookmark on the node_module folder
   - -v $(pwd):/app Map the pwd into the '/app' folder
+  
+```
+#Dockerfile.dev
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN yarn install
+
+COPY . .
+
+
+CMD ["yarn", "run", "start"]
+
+```
+``` 
+# docker-compose.yml
+version: "3"
+services:
+  web:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+
+```
+
+
