@@ -87,4 +87,15 @@ Note:
  - if the file name is Dockerfile.dev 
 ``` console
 docker build -f Dockerfile.dev .
+# To Run
+docker run -it -p 3000:3000 d65829b5b674c98068d
 ```
+## 6. Docker Volume
+
+``` console
+docker run -it -p 3000:3000 -v /app/node_modules -v $(pwd):/app  d65829b5b674c98068d
+
+```
+Note:
+  - -v /app/node_module Put a bookmark on the node_module folder
+  - -v $(pwd):/app Map the pwd into the '/app' folder
