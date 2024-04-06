@@ -158,3 +158,43 @@ RUN yarn run build
 FROM nginx
 COPY --from=builder /app/build /usr/share/nginx/html
 ```
+
+# Example
+
+## Docker file for mongodb
+``` console
+
+
+
+version: '3' 
+volumes:
+    mongo_data:
+services: 
+    mongo:
+        image: mongo:latest 
+        ports:
+        - "27017:27017"
+        volumes:
+        - mongo_data:/data/db 
+    api:
+        build: 
+        context: .
+        dockerfile: Dockerfile 
+        args:
+            - NODE_ENV=development 
+        depends_on:
+            - mongo 
+        links:
+            - mongo 
+        environment:
+            PORT: 3000 
+        ports:
+            - "3000:3000" 
+        volumes:
+            - .:/app
+            - /app/node_modules 
+        command: >
+            npm run start:dev
+
+
+```
